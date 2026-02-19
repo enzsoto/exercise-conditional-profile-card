@@ -22,6 +22,41 @@ import "../style/index.css";
         city: null
     }
  */
+function validateName(name) {
+  if (name) return name;
+  return "Your Name";
+}
+
+function validateLastName(lastName) {
+  if (lastName) return lastName;
+  return "Your Lastname";
+}
+
+function validateLeftOrRight(value) {
+  if (value.includes("right")) return "position-right";
+  return "position-left";
+}
+
+function validateSocialMedia(value) {
+  if (value) return value;
+  return "4geeksacademy";
+}
+
+function validateRole(value) {
+  if (value) return value;
+  return "Your Role";
+}
+
+function validateCity(value) {
+  if (value) return value;
+  return "Your City";
+}
+
+function validateCountry(value) {
+  if (value) return value;
+  return "Your Country";
+}
+
 function render(variables = {}) {
   console.log("These are the current variables: ", variables); // print on the console
   // here we ask the logical questions to make decisions on how to build the html
@@ -33,14 +68,26 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${validateName(variables.name) +
+            " " +
+            validateLastName(variables.lastName)}</h1>
+          <h2>${validateRole(variables.role)}</h2>
+          <h3>${validateCity(variables.city) +
+            ", " +
+            validateCountry(variables.country)}</h3>
+          <ul class="${validateLeftOrRight(variables.socialMediaPosition)}">
+            <li><a href="https://twitter.com/${validateSocialMedia(
+              variables.twitter
+            )}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${validateSocialMedia(
+              variables.github
+            )}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/school/${validateSocialMedia(
+              variables.linkedin
+            )}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${validateSocialMedia(
+              variables.instagram
+            )}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
